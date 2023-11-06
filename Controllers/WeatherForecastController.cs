@@ -24,9 +24,9 @@ namespace Hotelum.Controllers
             }
 
             var result = _service.Get(count, request.Min, request.Max);
-            return Ok(result);
+            return Ok(result + "Hi");
         }
-
+        //ma³azmiana
         //[HttpGet]
         //public IEnumerable<WeatherForecast> Get()
         //{
