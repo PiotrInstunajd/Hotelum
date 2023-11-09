@@ -4,7 +4,7 @@ namespace Hotelum.Entities
 {
     public class HotelsDbContext : DbContext
     {
-        private string _connectionString = "Server=(localdb)\\mssqllocaldb;Database=RestaurantDb;Trusted_Connection=True;";
+        private string _connectionString = "Server=(localdb)\\mssqllocaldb;Database=HotelumDb;Trusted_Connection=True;";
         public DbSet<Hotels> Hotels { get; set; }
         public DbSet<Address> Address { get; set; }
         public DbSet<Rooms> Rooms { get; set; }
