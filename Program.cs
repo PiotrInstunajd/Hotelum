@@ -1,5 +1,6 @@
 using Hotelum.Entities;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 
 namespace Hotelum
 {
@@ -10,10 +11,10 @@ namespace Hotelum
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddTransient<IWeatherForecastService, WeatherForecastService>();
             builder.Services.AddControllers();
             builder.Services.AddDbContext<HotelsDbContext>();
             builder.Services.AddScoped<HotelsSeeder>();
+            builder.Services.AddAutoMapper(this.GetType().Assembly);
 
 
             var app = builder.Build();
