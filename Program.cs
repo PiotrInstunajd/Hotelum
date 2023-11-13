@@ -1,4 +1,6 @@
 using Hotelum.Entities;
+using Hotelum.Models;
+using Hotelum.Controllers;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 
@@ -14,7 +16,7 @@ namespace Hotelum
             builder.Services.AddControllers();
             builder.Services.AddDbContext<HotelsDbContext>();
             builder.Services.AddScoped<HotelsSeeder>();
-            builder.Services.AddAutoMapper(this.GetType().Assembly);
+            builder.Services.AddAutoMapper(typeof(Hotels).Assembly);
 
 
             var app = builder.Build();
@@ -38,7 +40,7 @@ namespace Hotelum
                     Console.WriteLine($"An error occurred while seeding the database: {ex.Message}");
                 }
             }
-
+            
             app.UseHttpsRedirection();
 
             //app.UseAuthorization();

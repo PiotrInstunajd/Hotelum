@@ -14,6 +14,7 @@ namespace Hotelum.Controllers
         public HotelController(HotelsDbContext dbContext, IMapper mapper)
         {
             _dbcontext = dbContext;
+            _mapper = mapper;
         }
         public ActionResult<IEnumerable<HotelsDto>> GetAll()
         {
@@ -43,7 +44,7 @@ namespace Hotelum.Controllers
             }
 
             var hotelsDtos = _mapper.Map<HotelsDto>(hotels);
-            return Ok(hotels);
+            return Ok(hotelsDtos);
         }
     }
 }

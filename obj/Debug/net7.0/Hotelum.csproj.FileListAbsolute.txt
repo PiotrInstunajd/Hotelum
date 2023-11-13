@@ -68,3 +68,5 @@ F:\MVS Projects\Hotelum\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Runtime.
 F:\MVS Projects\Hotelum\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 F:\MVS Projects\Hotelum\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 F:\MVS Projects\Hotelum\obj\Debug\net7.0\Hotelum.csproj.CopyComplete
+F:\MVS Projects\Hotelum\bin\Debug\net7.0\AutoMapper.dll
+F:\MVS Projects\Hotelum\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
