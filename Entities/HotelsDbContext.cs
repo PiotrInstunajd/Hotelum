@@ -14,7 +14,7 @@ namespace Hotelum.Entities
             modelBuilder.Entity<Hotels>()
                 .Property(r => r.Name)
                 .IsRequired()
-                .HasMaxLength(50);
+                .HasMaxLength(25);
 
             modelBuilder.Entity<Rooms>()
                 .Property(d => d.Name)
@@ -23,12 +23,12 @@ namespace Hotelum.Entities
             modelBuilder.Entity<Address>()
                 .Property(c => c.City)
                 .IsRequired()
-                .HasMaxLength(50);
+                .HasMaxLength(35);
 
             modelBuilder.Entity<Address>()
                 .Property(s => s.Street)
                 .IsRequired()
-                .HasMaxLength(50);
+                .HasMaxLength(35);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

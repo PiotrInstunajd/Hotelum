@@ -4,6 +4,7 @@ using Hotelum.Controllers;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using System.Reflection;
+using Hotelum.Services;
 
 namespace Hotelum
 {
@@ -18,7 +19,7 @@ namespace Hotelum
             builder.Services.AddDbContext<HotelsDbContext>();
             builder.Services.AddScoped<HotelsSeeder>();
             builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
-
+            builder.Services.AddScoped<IHotelService, HotelService>();
 
             var app = builder.Build();
 

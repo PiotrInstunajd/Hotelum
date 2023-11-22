@@ -3,59 +3,51 @@ using Hotelum.Entities;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Hotelum.Services;
 
 namespace Hotelum.Controllers
 {
     [Route("api/hotelum")]
     public class HotelController : ControllerBase
     {
-        private readonly HotelsDbContext _dbContext;
-        private readonly IMapper _mapper;
-        public HotelController(HotelsDbContext dbContext, IMapper mapper)
+        private readonly IHotelService _hotelService;
+
+        public HotelController(IHotelService hotelService)
         {
-            _dbContext = dbContext;
-            _mapper = mapper;
+            _hotelService = hotelService;
         }
 
         [HttpPost]
         public ActionResult CreateHotel([FromBody]CreateHotelDto dto)
         {
-            var hotel = _mapper.Map<Hotels>(dto);
-            _dbContext.Hotels.Add(hotel);
-            _dbContext.SaveChanges();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-            return Created($"/api/hotelum/{hotel.Id}", null);
+            var id = _hotelService.Create(dto);
+
+            return Created($"/api/hotelum/{id}", null);
         }
 
         [HttpGet]
         public ActionResult<IEnumerable<HotelsDto>> GetAll()
         {
-            var hotels = _dbContext
-                .Hotels
-                .Include(r => r.Address)
-                .Include(r => r.Rooms)
-                .ToList();
+            var hotelDtos = _hotelService.GetAll();
 
-            var hotelsDtos = _mapper.Map<List<HotelsDto>>(hotels);
-
-            return Ok(hotelsDtos);
+            return Ok(hotelDtos);
         }
         [HttpGet("{id}")]
         public ActionResult<HotelsDto> Get([FromRoute] int id)
         {
-            var hotels = _dbContext
-                .Hotels
-                .Include(r => r.Address)
-                .Include(r => r.Rooms)
-                .FirstOrDefault(h => h.Id == id);
+            var hotel = _hotelService.GetById(id);
 
-            if (hotels is null)
+            if (hotel is null)
             {
                 return NotFound();
             }
 
-            var hotelsDtos = _mapper.Map<HotelsDto>(hotels);
-            return Ok(hotelsDtos);
+            return Ok(hotel);
         }
     }
 }
