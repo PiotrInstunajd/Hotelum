@@ -43,6 +43,7 @@ namespace Hotelum
                 }
             }
             
+            
             app.UseHttpsRedirection();
 
             //app.UseAuthorization();

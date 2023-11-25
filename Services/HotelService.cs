@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Hotelum.Entities;
 using Hotelum.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hotelum.Services
@@ -10,8 +11,9 @@ namespace Hotelum.Services
         int Create(CreateHotelDto dto);
         IEnumerable<HotelsDto> GetAll();
         HotelsDto GetById(int id);
+        bool Delete(int id);
+        bool Update(int id, UpdateHotelDto dto);
     }
-
     public class HotelService : IHotelService
     {
         private readonly HotelsDbContext _dbContext;
@@ -21,6 +23,20 @@ namespace Hotelum.Services
         {
             _dbContext = dbContext;
             _mapper = mapper;
+
+        }
+        public bool Delete(int id)
+        {
+            var hotel = _dbContext
+                .Hotels
+                .FirstOrDefault(h => h.Id == id);
+
+            if (hotel is null) return false;
+
+            _dbContext.Hotels.Remove(hotel);
+            _dbContext.SaveChanges();
+
+            return true;
         }
         public HotelsDto GetById(int id)
         {
@@ -51,7 +67,22 @@ namespace Hotelum.Services
 
             return hotelsDtos;
         }
+        public bool Update(int id, UpdateHotelDto dto)
+        {
+            var hotel = _dbContext
+                .Hotels
+                .FirstOrDefault(h => h.Id == id);
 
+            if (hotel is null) return false;
+
+            hotel.Name = dto.Name;
+            hotel.Description = dto.Description;
+            hotel.IsItOpen = dto.IsItOpen;
+
+            _dbContext.SaveChanges();
+
+            return true;
+        }
         public int Create(CreateHotelDto dto)
         {
             var hotel = _mapper.Map<Hotels>(dto);

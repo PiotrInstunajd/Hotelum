@@ -16,6 +16,35 @@ namespace Hotelum.Controllers
         {
             _hotelService = hotelService;
         }
+        [HttpDelete("{id}")]
+        public ActionResult Delete([FromRoute] int id)
+        {
+            var isDeleted = _hotelService.Delete(id);
+
+            if (isDeleted)
+            {
+                return NoContent();
+            }
+
+            return NotFound();
+        }
+        [HttpPut("{id}")]
+        public ActionResult Update([FromBody] UpdateHotelDto dto, [FromRoute] int id)
+        {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var isUpdated = _hotelService.Update(id, dto);
+
+            if (!isUpdated)
+            {
+                return NotFound();
+            }
+
+            return Ok(isUpdated);
+        }
 
         [HttpPost]
         public ActionResult CreateHotel([FromBody]CreateHotelDto dto)
