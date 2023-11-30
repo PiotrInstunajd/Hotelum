@@ -3,6 +3,8 @@ using Hotelum.Entities;
 using Hotelum.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
+using NLog;
+using NLog.Extensions;
 
 namespace Hotelum.Services
 {
@@ -18,15 +20,19 @@ namespace Hotelum.Services
     {
         private readonly HotelsDbContext _dbContext;
         private readonly IMapper _mapper;
+        private readonly ILogger<HotelService> _logger;
 
-        public HotelService(HotelsDbContext dbContext, IMapper mapper)
+        public HotelService(HotelsDbContext dbContext, IMapper mapper, ILogger<HotelService> logger)
         {
             _dbContext = dbContext;
             _mapper = mapper;
+            _logger = logger;
 
         }
         public bool Delete(int id)
         {
+            _logger.LogError($"Hotel with id: {id} DELETE action invoked");
+
             var hotel = _dbContext
                 .Hotels
                 .FirstOrDefault(h => h.Id == id);

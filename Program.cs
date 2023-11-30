@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using System.Reflection;
 using Hotelum.Services;
+using NLog.Web;
+using Hotelum.Middleware;
 
 namespace Hotelum
 {
@@ -20,10 +22,11 @@ namespace Hotelum
             builder.Services.AddScoped<HotelsSeeder>();
             builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
             builder.Services.AddScoped<IHotelService, HotelService>();
-
+            builder.Logging.ClearProviders();
+            builder.Logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+            builder.Host.UseNLog();
+            builder.Services.AddScoped<ErrorHandlingMiddleware>();
             var app = builder.Build();
-
-
 
             // Configure the HTTP request pipeline.
 
@@ -42,10 +45,10 @@ namespace Hotelum
                     Console.WriteLine($"An error occurred while seeding the database: {ex.Message}");
                 }
             }
-            
-            
-            app.UseHttpsRedirection();
+            app.UseMiddleware<ErrorHandlingMiddleware>();
 
+            app.UseHttpsRedirection();
+            
             //app.UseAuthorization();
 
 

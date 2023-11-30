@@ -43,7 +43,7 @@ namespace Hotelum.Controllers
                 return NotFound();
             }
 
-            return Ok(isUpdated);
+            return Ok();
         }
 
         [HttpPost]
