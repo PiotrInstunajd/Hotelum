@@ -74,3 +74,8 @@ F:\MVS Projects\Hotelum\bin\Debug\net7.0\nlog.config
 F:\MVS Projects\Hotelum\bin\Debug\net7.0\NLog.dll
 F:\MVS Projects\Hotelum\bin\Debug\net7.0\NLog.Extensions.Logging.dll
 F:\MVS Projects\Hotelum\bin\Debug\net7.0\NLog.Web.AspNetCore.dll
+F:\MVS Projects\Hotelum\bin\Debug\net7.0\Microsoft.OpenApi.dll
+F:\MVS Projects\Hotelum\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
+F:\MVS Projects\Hotelum\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+F:\MVS Projects\Hotelum\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+F:\MVS Projects\Hotelum\obj\Debug\net7.0\Hotelum.MvcApplicationPartsAssemblyInfo.cs

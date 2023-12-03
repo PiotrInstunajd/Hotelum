@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using NLog;
 using NLog.Extensions;
+using Hotelum.Exceptions;
 
 namespace Hotelum.Services
 {
@@ -13,8 +14,8 @@ namespace Hotelum.Services
         int Create(CreateHotelDto dto);
         IEnumerable<HotelsDto> GetAll();
         HotelsDto GetById(int id);
-        bool Delete(int id);
-        bool Update(int id, UpdateHotelDto dto);
+        void Delete(int id);
+        void Update(int id, UpdateHotelDto dto);
     }
     public class HotelService : IHotelService
     {
@@ -29,7 +30,8 @@ namespace Hotelum.Services
             _logger = logger;
 
         }
-        public bool Delete(int id)
+        //Delete Hotel
+        public void Delete(int id)
         {
             _logger.LogError($"Hotel with id: {id} DELETE action invoked");
 
@@ -37,13 +39,13 @@ namespace Hotelum.Services
                 .Hotels
                 .FirstOrDefault(h => h.Id == id);
 
-            if (hotel is null) return false;
+            if (hotel is null) 
+                throw new NotFoundException("Hotel not found");
 
             _dbContext.Hotels.Remove(hotel);
             _dbContext.SaveChanges();
-
-            return true;
         }
+        //Provide full information about hotel
         public HotelsDto GetById(int id)
         {
             var hotel = _dbContext
@@ -53,14 +55,12 @@ namespace Hotelum.Services
                 .FirstOrDefault(h => h.Id == id);
 
             if (hotel == null)
-            {
-                return null;
-            }
+                throw new NotFoundException("Hotel not found");
 
             var result = _mapper.Map<HotelsDto>(hotel);
             return result;
         }
-
+        //Provide limited list of Hotels for guest 
         public IEnumerable<HotelsDto> GetAll()
         {
             var hotels = _dbContext
@@ -73,22 +73,23 @@ namespace Hotelum.Services
 
             return hotelsDtos;
         }
-        public bool Update(int id, UpdateHotelDto dto)
+        //Update of Hotels
+        public void Update(int id, UpdateHotelDto dto)
         {
             var hotel = _dbContext
                 .Hotels
                 .FirstOrDefault(h => h.Id == id);
 
-            if (hotel is null) return false;
+            if (hotel is null) 
+                throw new NotFoundException("Hotel not found");
 
             hotel.Name = dto.Name;
             hotel.Description = dto.Description;
             hotel.IsItOpen = dto.IsItOpen;
 
             _dbContext.SaveChanges();
-
-            return true;
         }
+        //Create Hotel
         public int Create(CreateHotelDto dto)
         {
             var hotel = _mapper.Map<Hotels>(dto);
@@ -97,5 +98,6 @@ namespace Hotelum.Services
 
             return hotel.Id;
         }
+
     }
 }

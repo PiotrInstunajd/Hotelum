@@ -22,10 +22,12 @@ namespace Hotelum
             builder.Services.AddScoped<HotelsSeeder>();
             builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
             builder.Services.AddScoped<IHotelService, HotelService>();
+            builder.Services.AddScoped<ErrorHandlingMiddleware>();
+            builder.Services.AddSwaggerGen();
             builder.Logging.ClearProviders();
             builder.Logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
             builder.Host.UseNLog();
-            builder.Services.AddScoped<ErrorHandlingMiddleware>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -48,7 +50,12 @@ namespace Hotelum
             app.UseMiddleware<ErrorHandlingMiddleware>();
 
             app.UseHttpsRedirection();
-            
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hotelum");
+            });
+            app.UseRouting();
             //app.UseAuthorization();
 
 

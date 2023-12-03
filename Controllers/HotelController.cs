@@ -8,6 +8,7 @@ using Hotelum.Services;
 namespace Hotelum.Controllers
 {
     [Route("api/hotelum")]
+    [ApiController]
     public class HotelController : ControllerBase
     {
         private readonly IHotelService _hotelService;
@@ -19,29 +20,14 @@ namespace Hotelum.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete([FromRoute] int id)
         {
-            var isDeleted = _hotelService.Delete(id);
+             _hotelService.Delete(id);
 
-            if (isDeleted)
-            {
-                return NoContent();
-            }
-
-            return NotFound();
+            return NoContent();
         }
         [HttpPut("{id}")]
         public ActionResult Update([FromBody] UpdateHotelDto dto, [FromRoute] int id)
         {
-            if(!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var isUpdated = _hotelService.Update(id, dto);
-
-            if (!isUpdated)
-            {
-                return NotFound();
-            }
+            _hotelService.Update(id, dto);
 
             return Ok();
         }
@@ -49,11 +35,6 @@ namespace Hotelum.Controllers
         [HttpPost]
         public ActionResult CreateHotel([FromBody]CreateHotelDto dto)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             var id = _hotelService.Create(dto);
 
             return Created($"/api/hotelum/{id}", null);
@@ -70,11 +51,6 @@ namespace Hotelum.Controllers
         public ActionResult<HotelsDto> Get([FromRoute] int id)
         {
             var hotel = _hotelService.GetById(id);
-
-            if (hotel is null)
-            {
-                return NotFound();
-            }
 
             return Ok(hotel);
         }
