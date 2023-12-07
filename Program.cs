@@ -23,6 +23,7 @@ namespace Hotelum
             builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
             builder.Services.AddScoped<IHotelService, HotelService>();
             builder.Services.AddScoped<ErrorHandlingMiddleware>();
+            builder.Services.AddScoped<RequestTimeMiddleware>();
             builder.Services.AddSwaggerGen();
             builder.Logging.ClearProviders();
             builder.Logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
@@ -48,7 +49,7 @@ namespace Hotelum
                 }
             }
             app.UseMiddleware<ErrorHandlingMiddleware>();
-
+            app.UseMiddleware<RequestTimeMiddleware>();
             app.UseHttpsRedirection();
             app.UseSwagger();
             app.UseSwaggerUI(c =>

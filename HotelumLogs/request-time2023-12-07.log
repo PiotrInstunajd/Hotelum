@@ -1,0 +1,2 @@
+2023-12-07 19:26:45.8444|0|INFO|Hotelum.Middleware.RequestTimeMiddleware|Request [GET] at /api/hotelum/ took [elapsedMilliseconds] ms 
+2023-12-07 19:28:07.4779|0|INFO|Hotelum.Middleware.RequestTimeMiddleware|Request [GET] at /api/hotelum/ took [19007] ms 
