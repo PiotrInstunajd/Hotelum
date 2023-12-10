@@ -7,7 +7,7 @@ namespace Hotelum.Entities
         private string _connectionString = "Server=(localdb)\\mssqllocaldb;Database=HotelumDb;Trusted_Connection=True;";
         public DbSet<Hotels> Hotels { get; set; }
         public DbSet<Address> Address { get; set; }
-        public DbSet<Rooms> Rooms { get; set; }
+        public DbSet<Room> Rooms { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -16,7 +16,7 @@ namespace Hotelum.Entities
                 .IsRequired()
                 .HasMaxLength(25);
 
-            modelBuilder.Entity<Rooms>()
+            modelBuilder.Entity<Room>()
                 .Property(d => d.Name)
                 .IsRequired();
 

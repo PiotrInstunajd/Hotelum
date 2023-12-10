@@ -36,23 +36,24 @@ namespace Hotelum
                 IsItOpen = true,
                 ContactEmail = "contact@avocado.com",
                 ContactNumber = "123456789",
-                Rooms = new List<Rooms>()
+                Rooms = new List<Room>()
                 {
-                    new Rooms()
+                    new Room()
                     {
                         Name = "Król",
                         Description = "Dla bogatych",
                         Price = 8549098M,
                         NumberOfRooms = 1,
+                        HotelId = 1,
                     },
-                    new Rooms()
+                    new Room()
                     {
                         Name = "Królowa",
                         Description = "Dla mniej bogatych",
                         Price = 89098M,
                         NumberOfRooms = 5,
                     },
-                    new Rooms()
+                    new Room()
                     {
                         Name = "Standart",
                         Description = "Dla standartów",
@@ -75,23 +76,23 @@ namespace Hotelum
                         IsItOpen = true,
                         ContactEmail = "contact@abada.com",
                         ContactNumber = "123456789",
-                    Rooms = new List<Rooms>
+                    Rooms = new List<Room>
                     {
-                        new Rooms()
+                        new Room()
                         {
                             Name = "Bieda",
                             Description = "Dla odważnych",
                             Price = 8M,
                             NumberOfRooms = 1,
                         },
-                        new Rooms()
+                        new Room()
                         {
                             Name = "Mniejsza bieda",
                             Description = "Dla normalnych",
                             Price = 98M,
                             NumberOfRooms = 5,
                         },
-                        new Rooms()
+                        new Room()
                         {
                             Name = "Bogato",
                             Description = "Dla bogatych",

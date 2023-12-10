@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using NLog;
 using NLog.Extensions;
 using Hotelum.Exceptions;
+using System.Linq;
 
 namespace Hotelum.Services
 {

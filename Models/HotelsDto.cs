@@ -12,6 +12,6 @@ namespace Hotelum.Models
         public string City { get; set; }
         public string Street { get; set; }
         public string PostalCode { get; set; }
-        public List<RoomsDto> AvailableRooms { get; set; }
+        public List<RoomsDto> Rooms { get; set; }
     }
 }
