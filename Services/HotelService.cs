@@ -7,6 +7,7 @@ using NLog;
 using NLog.Extensions;
 using Hotelum.Exceptions;
 using System.Linq;
+using System.ComponentModel.DataAnnotations;
 
 namespace Hotelum.Services
 {
@@ -17,6 +18,7 @@ namespace Hotelum.Services
         HotelsDto GetById(int id);
         void Delete(int id);
         void Update(int id, UpdateHotelDto dto);
+        //RoomsDto GetById(Hotels id);
     }
     public class HotelService : IHotelService
     {
@@ -61,13 +63,25 @@ namespace Hotelum.Services
             var result = _mapper.Map<HotelsDto>(hotel);
             return result;
         }
+
+        //public RoomsDto GetById(Hotels id)
+        //{
+        //    var room = _dbContext
+        //        .Rooms;
+
+        //    if (room == null)
+        //        throw new NotFoundException("No rooms available");
+
+        //    var result = _mapper.Map<RoomsDto>(room);
+        //    return result;
+        //}
+
         //Provide limited list of Hotels for guest 
         public IEnumerable<HotelsDto> GetAll()
         {
             var hotels = _dbContext
                 .Hotels
                 .Include(r => r.Address)
-                .Include(r => r.Rooms)
                 .ToList();
 
             var hotelsDtos = _mapper.Map<List<HotelsDto>>(hotels);
