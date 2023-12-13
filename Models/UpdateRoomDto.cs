@@ -1,9 +1,8 @@
-﻿using Hotelum.Entities;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Hotelum.Models
 {
-    public class RoomsDto
+    public class UpdateRoomDto
     {
         [Required]
         public int NumberOfRooms { get; set; }

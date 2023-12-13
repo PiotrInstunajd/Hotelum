@@ -17,6 +17,10 @@ namespace Hotelum
 
             CreateMap<CreateHotelDto, Hotels>()
                 .ForMember(r => r.Address, c => c.MapFrom(dto => new Address() { City = dto.City, Street = dto.Street, PostalCode = dto.PostalCode }));
+
+            CreateMap<CreateRoomDto, Room>()
+                .ForMember(m => m.Id, c => c.MapFrom(s => s.HotelId));
+            
         }
     }
 }

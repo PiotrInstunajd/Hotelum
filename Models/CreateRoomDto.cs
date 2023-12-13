@@ -1,9 +1,8 @@
-﻿using Hotelum.Entities;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Hotelum.Models
 {
-    public class RoomsDto
+    public class CreateRoomDto
     {
         [Required]
         public int NumberOfRooms { get; set; }
@@ -14,5 +13,7 @@ namespace Hotelum.Models
         public string Description { get; set; }
         [Required]
         public decimal Price { get; set; }
+        [Required]
+        public int HotelId { get; set; }
     }
 }
