@@ -15,6 +15,7 @@ namespace Hotelum.Controllers
         {
             _roomService = roomService;
         }
+        //Delete room
         [HttpDelete("{id}")]
         public ActionResult Delete([FromRoute] int id)
         {
@@ -22,6 +23,7 @@ namespace Hotelum.Controllers
 
             return NoContent();
         }
+        //Update of Room
         [HttpPut("{id}")]
         public ActionResult Update([FromBody] UpdateRoomDto dto, [FromRoute] int id)
         {
@@ -29,15 +31,15 @@ namespace Hotelum.Controllers
 
             return Ok();
         }
-
+        //Create Room
         [HttpPost]
-        public ActionResult CreateRoom([FromBody] CreateRoomDto dto)
+        public ActionResult CreateRoom([FromBody]CreateRoomDto dto)
         {
             var id = _roomService.Create(dto);
 
             return Created($"/api/hotelum/rooms/{id}", null);
         }
-
+        //Provide limited list of rooms for guests
         [HttpGet]
         public ActionResult<IEnumerable<RoomsDto>> GetAll()
         {
@@ -45,6 +47,7 @@ namespace Hotelum.Controllers
 
             return Ok(roomDtos);
         }
+        //Provide full information about room for guests
         [HttpGet("{id}")]
         public ActionResult<RoomsDto> Get([FromRoute] int id)
         {

@@ -50,7 +50,7 @@ namespace Hotelum.Services
                     .FirstOrDefault(h => h.Id == id);
 
                 if (room == null)
-                    throw new NotFoundException("Hotel not found");
+                    throw new NotFoundException("Room not found");
 
                 var result = _mapper.Map<RoomsDto>(room);
                 return result;

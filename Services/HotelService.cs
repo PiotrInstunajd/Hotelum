@@ -18,7 +18,6 @@ namespace Hotelum.Services
         HotelsDto GetById(int id);
         void Delete(int id);
         void Update(int id, UpdateHotelDto dto);
-        //RoomsDto GetById(Hotels id);
     }
     public class HotelService : IHotelService
     {
@@ -33,7 +32,7 @@ namespace Hotelum.Services
             _logger = logger;
 
         }
-        //Delete Hotel
+        //Delete hotel
         public void Delete(int id)
         {
             _logger.LogError($"Hotel with id: {id} DELETE action invoked");
@@ -63,20 +62,7 @@ namespace Hotelum.Services
             var result = _mapper.Map<HotelsDto>(hotel);
             return result;
         }
-
-        //public RoomsDto GetById(Hotels id)
-        //{
-        //    var room = _dbContext
-        //        .Rooms;
-
-        //    if (room == null)
-        //        throw new NotFoundException("No rooms available");
-
-        //    var result = _mapper.Map<RoomsDto>(room);
-        //    return result;
-        //}
-
-        //Provide limited list of Hotels for guest 
+        //Provide limited list of hotels for guest 
         public IEnumerable<HotelsDto> GetAll()
         {
             var hotels = _dbContext
@@ -88,7 +74,7 @@ namespace Hotelum.Services
 
             return hotelsDtos;
         }
-        //Update of Hotels
+        //Update of hotels
         public void Update(int id, UpdateHotelDto dto)
         {
             var hotel = _dbContext
@@ -104,7 +90,7 @@ namespace Hotelum.Services
 
             _dbContext.SaveChanges();
         }
-        //Create Hotel
+        //Create hotel
         public int Create(CreateHotelDto dto)
         {
             var hotel = _mapper.Map<Hotels>(dto);
@@ -113,6 +99,5 @@ namespace Hotelum.Services
 
             return hotel.Id;
         }
-
     }
 }

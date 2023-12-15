@@ -44,7 +44,7 @@ namespace Hotelum
                         Description = "Dla bogatych",
                         Price = 8549098M,
                         NumberOfRooms = 1,
-                        HotelId = 1,
+                        HotelsId = 1,
                     },
                     new Room()
                     {
@@ -52,6 +52,7 @@ namespace Hotelum
                         Description = "Dla mniej bogatych",
                         Price = 89098M,
                         NumberOfRooms = 5,
+                        HotelsId = 1,
                     },
                     new Room()
                     {
@@ -59,6 +60,7 @@ namespace Hotelum
                         Description = "Dla standartów",
                         Price = 88M,
                         NumberOfRooms = 25,
+                        HotelsId = 1,
                     },
                     },
                     Address = new Address()
@@ -84,6 +86,7 @@ namespace Hotelum
                             Description = "Dla odważnych",
                             Price = 8M,
                             NumberOfRooms = 1,
+                            HotelsId = 2,
                         },
                         new Room()
                         {
@@ -91,6 +94,7 @@ namespace Hotelum
                             Description = "Dla normalnych",
                             Price = 98M,
                             NumberOfRooms = 5,
+                            HotelsId = 2,
                         },
                         new Room()
                         {
@@ -98,6 +102,7 @@ namespace Hotelum
                             Description = "Dla bogatych",
                             Price = 88M,
                             NumberOfRooms = 25,
+                            HotelsId = 2,
                         }
                         },
                         Address = new Address()

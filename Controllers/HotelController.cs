@@ -54,14 +54,5 @@ namespace Hotelum.Controllers
 
             return Ok(hotel);
         }
-
-        //[HttpGet("{id}/rooms")]
-        //public ActionResult<RoomsDto> GetById([FromRoute] Hotels id)
-        //{
-        //    var room = _hotelService.GetById(id);
-
-        //    return Ok(room);
-        //}
-
     }
 }

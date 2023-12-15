@@ -14,6 +14,6 @@ namespace Hotelum.Models
         [Required]
         public decimal Price { get; set; }
         [Required]
-        public int HotelId { get; set; }
+        public int HotelsId { get; set; }
     }
 }
